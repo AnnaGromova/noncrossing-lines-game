@@ -1,0 +1,10 @@
+.point {
+    cursor: pointer;
+}
+
+.point_content {
+    font-size: 24px;
+    font-weight: bold;
+    user-select: none;
+    -webkit-user-select: none;
+}

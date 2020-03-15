@@ -1,0 +1,27 @@
+.button {
+    font-family: "Segoe UI", sans-serif;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.button:focus {
+    outline: none;
+}
+
+.button--color-grey {
+    color: #969696;
+    background-color: #d8d8d8;
+}
+
+.button--small {
+    padding: 0;
+}
+
+.button--large {
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: bold;
+    padding: 10px 30px;
+    border-radius: 100px;
+}
