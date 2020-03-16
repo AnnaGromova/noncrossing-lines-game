@@ -11,8 +11,7 @@ export class GameField extends React.Component {
 
     state = {
         points: null,
-        edges: null,
-        level: 0
+        edges: null
     };
 
     componentDidMount() {
@@ -20,10 +19,9 @@ export class GameField extends React.Component {
     }
 
     generateNextLevel() {
-        const levelInfo = this.levelsIterator.getNextLevel();
-        if (levelInfo) {
-            const {file, levelIndex} = levelInfo;
-            this.setState({points: file.points, edges: file.edges, level: levelIndex});
+        const file = this.levelsIterator.getNextLevel();
+        if (file) {
+            this.setState({points: file.points, edges: file.edges});
         } else {
             this.props.onGameEnd();
         }
@@ -79,7 +77,7 @@ export class GameField extends React.Component {
             <div className="game-screen">
                 <header className="game-screen__header">
                     <div className="level-info">
-                        Уровень: {Number(this.state.level) + 1} из {this.levelsIterator.levelsCount}
+                        Уровень: {Number(this.levelsIterator.currentLevel) + 1} из {this.levelsIterator.levelsCount}
                     </div>
                 </header>
                 <svg className="full-screen" onMouseMove={this.move}>

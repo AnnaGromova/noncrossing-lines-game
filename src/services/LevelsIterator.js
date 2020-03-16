@@ -20,14 +20,14 @@ export class LevelsIterator {
             }
         }
 
-        this.levelIterator = levelIteratorMaker(levelsFiles, this.getCurrentLevel());
+        this.levelIterator = levelIteratorMaker(levelsFiles, this.currentLevel);
     }
 
     get levelsCount() {
         return levelsFiles.length;
     }
 
-    getCurrentLevel() {
+    get currentLevel() {
         return LevelSaver.getLevel() || 0;
     }
 
@@ -40,6 +40,6 @@ export class LevelsIterator {
         }
         LevelSaver.setLevel(file.value.levelIndex);
 
-        return file.value;
+        return file.value.file;
     }
 }
