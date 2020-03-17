@@ -31,7 +31,7 @@ export class LevelsIterator {
         return LevelSaver.getLevel() || 0;
     }
 
-    getCurrentLevelFile = () => {
+    get currentLevelFile() {
         return levelsFiles[this.currentLevel];
     };
 

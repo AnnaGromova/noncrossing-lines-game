@@ -33,7 +33,7 @@ export class GameField extends React.Component {
     };
 
     setLevelState = () => {
-        this.setState(this.levelsIterator.getCurrentLevelFile());
+        this.setState(this.levelsIterator.currentLevelFile);
     };
 
     getPoints = () => this.state.points &&
