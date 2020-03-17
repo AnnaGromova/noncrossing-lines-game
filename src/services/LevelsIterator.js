@@ -35,6 +35,10 @@ export class LevelsIterator {
         return levelsFiles[this.currentLevel];
     };
 
+    isLastLevel() {
+        return (Number(this.levelsCount) - Number(this.currentLevel) < 2);
+    };
+
     getNextLevel() {
         const file = this.levelIterator.next();
         if (!file.value) {

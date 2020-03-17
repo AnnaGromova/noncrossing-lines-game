@@ -57,7 +57,7 @@ export class GameField extends React.Component {
             )
         );
 
-    move = e => this.activePoint &&
+    handleMouseMove = e => this.activePoint &&
         this.setState(
             {
                 points:
@@ -73,17 +73,13 @@ export class GameField extends React.Component {
     removeActivePoint = () => {
         this.activePoint = undefined;
         if (!IntersectionChecker.checkCrossing(this.state.points, this.state.edges)) {
-            if (this.isLastLevel()) {
+            if (this.levelsIterator.isLastLevel()) {
                 this.levelsIterator.getNextLevel();
                 this.props.onGameEnd();
             } else {
                 this.setState({...this.state, levelCompleted: true});
             }
         }
-    };
-
-    isLastLevel() {
-        return (Number(this.levelsIterator.levelsCount) - Number(this.levelsIterator.currentLevel) < 2);
     };
 
     render() {
@@ -100,7 +96,7 @@ export class GameField extends React.Component {
                         <img src={icon_refresh} alt="сбросить"/>
                     </Button>
                 </header>
-                <svg className="full-screen" onMouseMove={this.move}>
+                <svg className="full-screen" onMouseMove={this.handleMouseMove}>
                     {this.getEdges()}
                     {this.getPoints()}
                 </svg>
