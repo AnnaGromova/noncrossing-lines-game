@@ -44,10 +44,10 @@
 }
 
 .button--large {
-    font-size: 30px;
-    line-height: 30px;
+    font-size: 26px;
+    line-height: 26px;
     font-weight: bold;
-    padding: 10px 40px;
+    padding: 16px 46px;
     border-radius: 100px;
 }
 
