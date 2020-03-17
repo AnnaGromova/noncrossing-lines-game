@@ -16,7 +16,7 @@ export class GameField extends React.Component {
     state = {
         points: null,
         edges: null,
-        gameEnd: false
+        levelCompleted: false
     };
 
     componentDidMount() {
@@ -25,11 +25,7 @@ export class GameField extends React.Component {
 
     generateNextLevel = () => {
         const file = this.levelsIterator.getNextLevel();
-        if (file) {
-            this.setState({points: file.points, edges: file.edges, gameEnd: false});
-        } else {
-            this.props.onGameEnd();
-        }
+        this.setState({points: file.points, edges: file.edges, levelCompleted: false});
     };
 
     setLevelState = () => {
@@ -77,14 +73,25 @@ export class GameField extends React.Component {
     removeActivePoint = () => {
         this.activePoint = undefined;
         if (!IntersectionChecker.checkCrossing(this.state.points, this.state.edges)) {
-            this.setState({...this.state, gameEnd: true});
+            setTimeout(() => {
+                if (this.isLastLevel()) {
+                    this.levelsIterator.getNextLevel();
+                    this.props.onGameEnd();
+                } else {
+                    this.setState({...this.state, levelCompleted: true});
+                }
+            }, 600)
         }
+    };
+
+    isLastLevel() {
+        return (Number(this.levelsIterator.levelsCount) - Number(this.levelsIterator.currentLevel) < 2);
     };
 
     render() {
         return (
             <div className="game-screen">
-                {this.state.gameEnd &&
+                {this.state.levelCompleted &&
                 <ModalMessage buttonOnClick={this.generateNextLevel} message="Уровень пройден!"/>
                 }
                 <header className="game-screen__header">
