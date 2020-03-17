@@ -9,7 +9,7 @@ export function ModalMessage(props) {
             <div className="modal_message">
                 {props.message}
             </div>
-            <Button onClick={props.buttonOnClick}>
+            <Button onClick={props.onButtonClick}>
                 продолжить
             </Button>
         </div>
@@ -18,5 +18,5 @@ export function ModalMessage(props) {
 
 ModalMessage.propTypes = {
     message: PropTypes.string,
-    buttonOnClick: PropTypes.func.isRequired
+    onButtonClick: PropTypes.func.isRequired
 };

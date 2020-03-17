@@ -15,22 +15,22 @@ class App extends React.Component {
         gameStatus: LevelSaver.getLevel() ? gameStatuses.running : gameStatuses.start
     };
 
-    gameStart = () => {
+    handleGameStart = () => {
         this.setState({gameStatus: gameStatuses.running});
     };
 
-    gameEnd = () => {
+    handleGameEnd = () => {
         this.setState({gameStatus: gameStatuses.end});
     };
 
     renderGameScreen() {
         switch (this.state.gameStatus) {
             case gameStatuses.start:
-                return <GameMenu onGameStart={this.gameStart} text="Убери все пересечения!" buttonText="начать игру"/>;
+                return <GameMenu onGameStart={this.handleGameStart} text="Убери все пересечения!" buttonText="начать игру"/>;
             case gameStatuses.running:
-                return <GameField onGameEnd={this.gameEnd}/>;
+                return <GameField onGameEnd={this.handleGameEnd}/>;
             case gameStatuses.end:
-                return <GameMenu onGameStart={this.gameStart} text="Это успех! Хочешь закрепить результат?"
+                return <GameMenu onGameStart={this.handleGameStart} text="Это успех! Хочешь закрепить результат?"
                                  buttonText="начать заново"/>;
             default:
                 return null;

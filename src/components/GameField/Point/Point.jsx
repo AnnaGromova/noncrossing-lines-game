@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import './Point.css';
 
 function Point(props) {
-    const handleMouseDown = () => props.onmousedown(props.number);
+    const handleMouseDown = () => props.onMouseDown(props.number);
 
     return (
         <g className="point" transform={`translate(${props.x}, ${props.y})`}
-           onMouseDown={handleMouseDown} onMouseUp={props.onmouseup}>
+           onMouseDown={handleMouseDown} onMouseUp={props.onMouseUp}>
             <circle className="point_circle" r="20"/>
             <text alignmentBaseline="central" textAnchor="middle"
                   className="point_content">{props.number}</text>
@@ -19,8 +19,8 @@ Point.propTypes = {
     number: PropTypes.string.isRequired,
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
-    onmousedown: PropTypes.func.isRequired,
-    onmouseup: PropTypes.func.isRequired
+    onMouseDown: PropTypes.func.isRequired,
+    onMouseUp: PropTypes.func.isRequired
 };
 
 export const PointContainer = React.memo(Point);

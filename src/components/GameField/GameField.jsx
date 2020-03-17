@@ -32,7 +32,7 @@ export class GameField extends React.Component {
         this.setState(this.levelsIterator.currentLevelFile);
     };
 
-    getPoints = () => this.state.points &&
+    renderPoints = () => this.state.points &&
         Object.entries(this.state.points)
             .map(([number, {x, y}]) =>
                 <Point
@@ -40,11 +40,11 @@ export class GameField extends React.Component {
                     number={number}
                     x={x}
                     y={y}
-                    onmousedown={this.setActivePoint}
-                    onmouseup={this.removeActivePoint}
+                    onMouseDown={this.setActivePoint}
+                    onMouseUp={this.removeActivePoint}
                 />);
 
-    getEdges = () => this.state.edges &&
+    renderEdges = () => this.state.edges &&
         Object.entries(this.state.edges).map(([point, linkedPoints]) =>
             linkedPoints.map(linkedPoint =>
                 <Line
@@ -86,7 +86,7 @@ export class GameField extends React.Component {
         return (
             <div className="game-screen">
                 {this.state.levelCompleted &&
-                <ModalMessage buttonOnClick={this.generateNextLevel} message="Уровень пройден!"/>
+                <ModalMessage onButtonClick={this.generateNextLevel} message="Уровень пройден!"/>
                 }
                 <header className="game-screen__header">
                     <div className="level-info">
@@ -97,8 +97,8 @@ export class GameField extends React.Component {
                     </Button>
                 </header>
                 <svg className="full-screen" onMouseMove={this.handleMouseMove}>
-                    {this.getEdges()}
-                    {this.getPoints()}
+                    {this.renderEdges()}
+                    {this.renderPoints()}
                 </svg>
             </div>
         );
