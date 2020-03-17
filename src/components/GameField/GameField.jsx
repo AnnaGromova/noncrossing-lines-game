@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Point} from './Point';
 import {Line} from './Line';
 import {Button} from "../Button";
+import {ModalMessage} from "./ModalMessage";
 import './GameField.css';
 import {IntersectionChecker} from '../../services/IntersectionChecker';
 import {LevelsIterator} from '../../services/LevelsIterator';
@@ -10,30 +11,29 @@ import icon_refresh from './images/refresh.svg';
 
 export class GameField extends React.Component {
     levelsIterator = new LevelsIterator();
-    startState = {
-        points: null,
-        edges: null
-    };
     activePoint = undefined;
 
-    state = this.startState;
+    state = {
+        points: null,
+        edges: null,
+        gameEnd: false
+    };
 
     componentDidMount() {
         this.generateNextLevel();
     }
 
-    generateNextLevel() {
+    generateNextLevel = () => {
         const file = this.levelsIterator.getNextLevel();
         if (file) {
-            this.startState = {points: file.points, edges: file.edges};
-            this.setState(this.startState);
+            this.setState({points: file.points, edges: file.edges, gameEnd: false});
         } else {
             this.props.onGameEnd();
         }
-    }
+    };
 
-    setStartState = () => {
-        this.setState(this.startState);
+    setLevelState = () => {
+        this.setState(this.levelsIterator.getCurrentLevelFile());
     };
 
     getPoints = () => this.state.points &&
@@ -77,18 +77,21 @@ export class GameField extends React.Component {
     removeActivePoint = () => {
         this.activePoint = undefined;
         if (!IntersectionChecker.checkCrossing(this.state.points, this.state.edges)) {
-            this.generateNextLevel();
+            this.setState({...this.state, gameEnd: true});
         }
     };
 
     render() {
         return (
             <div className="game-screen">
+                {this.state.gameEnd &&
+                <ModalMessage buttonOnClick={this.generateNextLevel} message="Уровень пройден!"/>
+                }
                 <header className="game-screen__header">
                     <div className="level-info">
                         Уровень: {Number(this.levelsIterator.currentLevel) + 1} из {this.levelsIterator.levelsCount}
                     </div>
-                    <Button onClick={this.setStartState} size="small" color="none">
+                    <Button onClick={this.setLevelState} size="small" color="none">
                         <img src={icon_refresh} alt="сбросить"/>
                     </Button>
                 </header>

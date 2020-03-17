@@ -5,7 +5,7 @@ import './GameMenu.css';
 
 export function GameMenu(props) {
     return (
-        <div className="full-screen screen">
+        <div className="full-screen screen-content-center">
             <Button onClick={props.onGameStart}>
                 {props.buttonText}
             </Button>

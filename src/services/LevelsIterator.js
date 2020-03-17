@@ -31,6 +31,10 @@ export class LevelsIterator {
         return LevelSaver.getLevel() || 0;
     }
 
+    getCurrentLevelFile = () => {
+        return levelsFiles[this.currentLevel];
+    };
+
     getNextLevel() {
         const file = this.levelIterator.next();
         if (!file.value) {
