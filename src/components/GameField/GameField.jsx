@@ -2,18 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Point} from './Point';
 import {Line} from './Line';
+import {Button} from "../Button";
 import './GameField.css';
 import {IntersectionChecker} from '../../services/IntersectionChecker';
 import {LevelsIterator} from '../../services/LevelsIterator';
+import icon_refresh from './images/refresh.svg';
 
 export class GameField extends React.Component {
     levelsIterator = new LevelsIterator();
-    activePoint = undefined;
-
-    state = {
+    startState = {
         points: null,
         edges: null
     };
+    activePoint = undefined;
+
+    state = this.startState;
 
     componentDidMount() {
         this.generateNextLevel();
@@ -22,11 +25,16 @@ export class GameField extends React.Component {
     generateNextLevel() {
         const file = this.levelsIterator.getNextLevel();
         if (file) {
-            this.setState({points: file.points, edges: file.edges});
+            this.startState = {points: file.points, edges: file.edges};
+            this.setState(this.startState);
         } else {
             this.props.onGameEnd();
         }
     }
+
+    setStartState = () => {
+        this.setState(this.startState);
+    };
 
     getPoints = () => this.state.points &&
         Object.entries(this.state.points)
@@ -80,6 +88,9 @@ export class GameField extends React.Component {
                     <div className="level-info">
                         Уровень: {Number(this.levelsIterator.currentLevel) + 1} из {this.levelsIterator.levelsCount}
                     </div>
+                    <Button onClick={this.setStartState} size="small" color="none">
+                        <img src={icon_refresh} alt="сбросить"/>
+                    </Button>
                 </header>
                 <svg className="full-screen" onMouseMove={this.move}>
                     {this.getEdges()}

@@ -14,8 +14,14 @@
     background-color: #d8d8d8;
 }
 
+.button--color-none {
+    background-color: inherit;
+}
+
 .button--small {
-    padding: 0;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
 }
 
 .button--large {
