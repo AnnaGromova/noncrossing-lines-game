@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Button} from '../Button';
-import './GameStart.css';
+import './GameMenu.css';
 
-export function GameStart(props) {
+export function GameMenu(props) {
     return (
         <div className="full-screen screen">
             <Button onClick={props.onGameStart}>
@@ -11,3 +12,7 @@ export function GameStart(props) {
         </div>
     )
 }
+
+GameMenu.propTypes = {
+    onGameStart: PropTypes.func.isRequired
+};

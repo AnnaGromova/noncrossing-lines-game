@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Point.css';
 
 function Point(props) {
@@ -13,5 +14,13 @@ function Point(props) {
         </g>
     )
 }
+
+Point.propTypes = {
+    number: PropTypes.string.isRequired,
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
+    onmousedown: PropTypes.func.isRequired,
+    onmouseup: PropTypes.func.isRequired
+};
 
 export const PointContainer = React.memo(Point);

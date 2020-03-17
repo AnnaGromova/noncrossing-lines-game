@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Point} from './Point';
 import {Line} from './Line';
 import './GameField.css';
@@ -88,3 +89,7 @@ export class GameField extends React.Component {
         );
     }
 }
+
+GameField.propTypes = {
+    onGameEnd: PropTypes.func.isRequired
+};

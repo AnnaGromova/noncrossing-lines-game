@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {GameStart} from './components/GameStart';
+import {GameMenu} from './components/GameMenu';
 import {GameField} from './components/GameField';
 import {LevelSaver} from "./services/LevelSaver";
 
@@ -26,11 +26,11 @@ class App extends React.Component {
     renderGameScreen() {
         switch (this.state.gameStatus) {
             case gameStatuses.start:
-                return <GameStart onGameStart={this.gameStart} buttonText="начать игру"/>;
+                return <GameMenu onGameStart={this.gameStart} buttonText="начать игру"/>;
             case gameStatuses.running:
                 return <GameField onGameEnd={this.gameEnd}/>;
             case gameStatuses.end:
-                return <GameStart onGameStart={this.gameStart} buttonText="начать заново"/>;
+                return <GameMenu onGameStart={this.gameStart} buttonText="начать заново"/>;
             default:
                 return null;
         }
