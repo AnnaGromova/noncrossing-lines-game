@@ -6,7 +6,7 @@ import './ModalMessage.css';
 export class ModalMessage extends React.Component {
     render() {
         return (
-            <div className="screen-content-center full-screen modal">
+            <div className="screen-content-center full-screen animation-fade-in modal">
                 <div className="modal_message">
                     {this.props.message}
                 </div>

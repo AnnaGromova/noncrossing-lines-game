@@ -4,7 +4,6 @@
     left: 0;
     top: 0;
     background-color: rgba(255, 255, 255, 0.8);
-    animation: 500ms fadeIn;
 }
 
 .modal_message {
@@ -12,13 +11,4 @@
     font-weight: 500;
     color: #969696;
     margin-bottom: 40px;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0
-    }
-    to {
-        opacity: 1
-    }
 }

@@ -73,14 +73,12 @@ export class GameField extends React.Component {
     removeActivePoint = () => {
         this.activePoint = undefined;
         if (!IntersectionChecker.checkCrossing(this.state.points, this.state.edges)) {
-            setTimeout(() => {
-                if (this.isLastLevel()) {
-                    this.levelsIterator.getNextLevel();
-                    this.props.onGameEnd();
-                } else {
-                    this.setState({...this.state, levelCompleted: true});
-                }
-            }, 600)
+            if (this.isLastLevel()) {
+                this.levelsIterator.getNextLevel();
+                this.props.onGameEnd();
+            } else {
+                this.setState({...this.state, levelCompleted: true});
+            }
         }
     };
 

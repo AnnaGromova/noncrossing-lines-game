@@ -4,7 +4,7 @@ import {Button} from '../Button';
 import './GameMenu.css';
 export function GameMenu(props) {
     return (
-        <div className="full-screen screen-content-center">
+        <div className="full-screen screen-content-center animation-fade-in">
             <div className="menu-text">{props.text}</div>
             <Button onClick={props.onGameStart}>
                 {props.buttonText}

@@ -16,3 +16,16 @@
     align-items: center;
     flex-direction: column;
 }
+
+.animation-fade-in {
+    animation: 700ms fadeIn;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
