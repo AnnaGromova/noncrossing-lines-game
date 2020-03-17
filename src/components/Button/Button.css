@@ -1,33 +1,53 @@
 .button {
-    font-family: "Segoe UI", sans-serif;
+    font: inherit;
     border: none;
     cursor: pointer;
     text-transform: uppercase;
+    transition: 200ms;
 }
 
 .button:focus {
     outline: none;
 }
 
+.button:active {
+    opacity: .8;
+    transform: scale(.95);
+    transition: 30ms;
+}
+
 .button--color-grey {
+    color: #767676;
+    background-color: #c8c8c8;
+}
+
+.button--color-grey:hover {
     color: #969696;
     background-color: #d8d8d8;
 }
 
 .button--color-none {
+    opacity: .8;
     background-color: inherit;
 }
 
+.button--color-none:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
 .button--small {
-    width: 35px;
-    height: 35px;
+    width: 36px;
+    height: 36px;
     padding: 5px;
+    border-radius: 18px;
 }
 
 .button--large {
     font-size: 30px;
     line-height: 30px;
     font-weight: bold;
-    padding: 10px 30px;
+    padding: 10px 40px;
     border-radius: 100px;
 }
+

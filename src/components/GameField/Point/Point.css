@@ -2,9 +2,27 @@
     cursor: pointer;
 }
 
+.point_circle,
 .point_content {
+    transition: 150ms;
+}
+
+.point_circle {
+    fill: #d8d8d8;
+}
+
+.point_content {
+    fill: #969696;
     font-size: 24px;
     font-weight: bold;
     user-select: none;
     -webkit-user-select: none;
+}
+
+.point:hover > .point_circle {
+    fill: #c8c8c8;
+}
+
+.point:hover > .point_content {
+    fill: #767676;
 }
