@@ -26,7 +26,8 @@ class App extends React.Component {
     renderGameScreen() {
         switch (this.state.gameStatus) {
             case gameStatuses.start:
-                return <GameMenu onGameStart={this.handleGameStart} text="Убери все пересечения!" buttonText="начать игру"/>;
+                return <GameMenu onGameStart={this.handleGameStart} text="Убери все пересечения!"
+                                 buttonText="начать игру"/>;
             case gameStatuses.running:
                 return <GameField onGameEnd={this.handleGameEnd}/>;
             case gameStatuses.end:
